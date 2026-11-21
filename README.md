@@ -1,205 +1,235 @@
-<p align="center">
-  <img src="images/hero_banner.png" width="1000" alt="ARES Hero Banner">
-</p>
 
-> 🚧 **This project is under active development.**
->
-> ARES is being developed incrementally. Every major design decision, implementation step, and engineering challenge is documented in the Development Diary.
-# ARES
-### Autonomous Robotics Exploration System
+# SENTRA
 
-> A modular autonomous mobile robot developed from scratch to explore unknown indoor environments using finite state machines, object-oriented software architecture, and occupancy grid mapping.
+### Sensor-Based Autonomous Exploration and Mapping
 
----
+SENTRA is an autonomous mobile robotics project designed to explore unknown indoor environments, detect obstacles, generate occupancy grid maps, and plan collision-free navigation paths.
 
-## Overview
+The project investigates sensor-based navigation in simulated post-disaster environments through the integration of embedded systems, robotics, localization, mapping, and autonomous path planning.
 
-ARES is a long-term robotics project that combines software engineering, embedded systems, and autonomous navigation.
+Developed as part of the EEE309 Software–Hardware Integration course at Kadir Has University.
 
-The primary objective is to design a robot capable of exploring an unknown indoor environment, avoiding obstacles, building an occupancy grid map, and making navigation decisions autonomously.
-
-The project is being developed incrementally through multiple versions, allowing every stage of the design process to be documented and improved.
+**Project Status:** Under Active Development
 
 ---
 
-## Current Status
+## Project Objectives
 
-**Current Version:** V1 — Software Simulation
-
-Current progress includes:
-
-- Finite State Machine (FSM)
-- Object-Oriented Software Architecture
-- Terminal-based Robot Simulation
-- Occupancy Grid Mapping
-- Navigation Logic
-- Development Diary
-- Hardware Research
+- Autonomous exploration of unknown indoor environments.
+- Real-time obstacle detection and avoidance.
+- Robot pose estimation using wheel encoders and IMU measurements.
+- Generation of a 2D occupancy grid map.
+- Autonomous path planning using the A* algorithm.
+- Motion control for planned path execution.
+- Wireless transmission of mapping and navigation data.
+- Experimental evaluation of system performance.
 
 ---
 
-## Project Roadmap
-
-| Version | Status | Description |
-|----------|--------|-------------|
-| V1 | ✅ Completed | Software simulation and architecture |
-| V2 | 🟡 In Progress | Arduino integration |
-| V3 | ⬜ Planned | Autonomous exploration with real sensors |
-| V4 | ⬜ Planned | STM32 migration and advanced navigation |
-
----
-
-## Software Architecture
-
-ARES is built using a modular object-oriented architecture.
-
-Core classes include:
-
-- Robot
-- StateMachine
-- DistanceSensor
-- MotorController
-- OccupancyGridMap
-
-Each class has a single responsibility, making the project scalable and suitable for future hardware integration.
-
----
-
-# Simulation
-
-The current version of ARES includes a complete terminal-based simulation of the autonomous exploration process.
-
-The simulation demonstrates the robot's decision-making cycle, finite state machine execution, occupancy grid updates, and autonomous navigation behavior before deploying the software to real hardware.
+## System Architecture
 
 <p align="center">
-  <img src="media/simulation.gif" width="700" alt="ARES V1 Simulation">
+  <img src="docs/diagrams/system_architecture.png" width="850" alt="SENTRA System Architecture">
 </p>
 
-The simulation follows the same software architecture that will later be deployed on the Arduino-based robot, making it an important validation step before hardware integration.
+The proposed system architecture consists of five main components:
+
+- Sensor and perception system
+- Localization and mapping
+- Path planning and autonomous navigation
+- Motor control and actuation
+- Wireless communication and companion application
+
+The architecture represents the intended system design and is subject to revision throughout development and testing.
 
 ---
 
-## Features
+## Exploration Concept
 
-- Modular OOP architecture
-- Finite State Machine (FSM)
-- Autonomous navigation logic
-- Occupancy Grid Mapping
-- Dynamic map expansion
-- Hardware-independent software design
-- Arduino-ready architecture
-- Future STM32 compatibility
+<p align="center">
+  <img src="docs/diagrams/exploration_concept.png" width="650" alt="SENTRA Exploration Concept">
+</p>
+
+SENTRA aims to explore an unknown environment while identifying obstacles and constructing a representation of its surroundings.
+
+The generated occupancy grid will distinguish between free, occupied, and unexplored areas. The robot will use this information to support navigation and path planning between selected locations.
 
 ---
 
-## Technologies
+## Software Development
 
-- C++
-- Object-Oriented Programming
-- Finite State Machines
-- Occupancy Grid Mapping
-- Arduino
-- Embedded Systems
-- Robotics
+SENTRA builds upon the initial robotics simulation framework developed in the ARES project.
+
+The inherited codebase provides a foundation for reactive navigation, finite state machine logic, distance sensing, motor control, and basic grid representation.
+
+The software is being reorganized into independent modules to improve maintainability, testability, and hardware–software integration.
+
+### Current Development Status
+
+- [x] Initial simulation framework
+- [x] Baseline finite state machine
+- [x] Predefined distance data handling
+- [x] Basic motor action abstraction
+- [x] Basic expandable grid representation
+- [x] State machine modularization
+- [ ] Complete modular software architecture
+- [ ] Virtual environment and sensor simulation
+- [ ] Differential drive motion model
+- [ ] Encoder-based odometry
+- [ ] IMU-assisted localization
+- [ ] Sensor-based occupancy grid mapping
+- [ ] A* path planning
+- [ ] Path following and replanning
+- [ ] Safety and mission management
+- [ ] Wireless communication
+- [ ] Companion application
+- [ ] Hardware integration and validation
+
+---
+
+## Hardware Architecture
+
+| Component | Purpose |
+|---|---|
+| Main Controller | Embedded processing and system coordination |
+| HC-SR04 | Distance measurement and obstacle detection |
+| SG90 Servo | Angular distance scanning |
+| Wheel Encoders | Wheel motion measurement and odometry |
+| IMU | Orientation estimation |
+| DC Motors | Differential drive locomotion |
+| L298N | Motor control |
+| 2WD Chassis + Caster | Mobile robot platform |
+| Camera | Additional visual context |
+| Power Supply | System power distribution |
+
+The final hardware configuration will be determined through component selection, calibration, and experimental testing.
 
 ---
 
 ## Repository Structure
 
 ```text
-ARES/
-│
+SENTRA/
 ├── docs/
 │   ├── architecture/
-│   ├── development-diary/
 │   ├── diagrams/
 │   └── reports/
-│
-├── images/
-├── media/
+├── firmware/
+├── include/
+├── simulation/
 ├── src/
-│
-├── README.md
+├── tests/
+├── visualization/
+├── .gitignore
 ├── LICENSE
-└── .gitignore
+└── README.md
 ```
 
+| Directory | Description |
+|---|---|
+| docs/ | Technical documentation, architecture diagrams and project reports |
+| firmware/ | Embedded software and hardware integration |
+| include/ | C++ header files |
+| simulation/ | Virtual environment and robot simulation |
+| src/ | Core C++ software modules |
+| tests/ | Software and system validation |
+| visualization/ | Mapping, navigation and sensor data visualization |
+
+The repository structure is being established progressively as individual modules are developed.
+
 ---
 
-## Development Diary
+## Development Roadmap
 
-The complete development process is documented from the very first sketch to hardware implementation.
+| Phase | Description | Status |
+|---|---|---|
+| Phase A | Project foundation and modular architecture | In Progress |
+| Phase B | Virtual environment and robot simulation | Planned |
+| Phase C | Sensor integration and calibration | Planned |
+| Phase D | Localization and occupancy grid mapping | Planned |
+| Phase E | Path planning and motion control | Planned |
+| Phase F | Communication and visualization | Planned |
+| Phase G | System integration and experimental validation | Planned |
 
-Topics include:
+---
 
-- Planning
-- Software Architecture
-- FSM Design
+## Build and Run
+
+The current simulation is implemented in C++ and requires a compiler with C++17 support.
+
+From the repository root, compile the source files:
+
+```bash
+g++ -std=c++17 -Iinclude src/*.cpp -o sentra.exe
+```
+
+On Windows, run the simulation:
+
+```powershell
+.\sentra.exe
+```
+
+The current simulation uses predefined sensor measurements and console-based motor actions. A virtual environment and physical robot model will be introduced in subsequent development phases.
+
+---
+
+## Testing and Validation
+
+The system will be evaluated through controlled experiments focusing on:
+
+- Obstacle detection accuracy
+- Localization and odometry error
+- Mapping accuracy
+- Navigation success rate
+- Collision avoidance performance
+- Path execution accuracy
+- Communication latency
+- System reliability and repeatability
+
+Experiments will be conducted in controlled indoor environments rather than actual disaster sites.
+
+---
+
+## Project Documentation
+
+- [Project Proposal](docs/reports/SENTRA_Project_Proposal.pdf)
+- [System Architecture](docs/diagrams/system_architecture.png)
+- [Exploration Concept](docs/diagrams/exploration_concept.png)
+- [Architecture Documentation](docs/architecture/)
+
+---
+
+## Technical Domains
+
+- Embedded Systems
+- Autonomous Robotics
+- Sensor Fusion
+- Localization and Odometry
 - Occupancy Grid Mapping
-- Hardware Research
-- Design Decisions
-- Engineering Challenges
+- Differential Drive Kinematics
+- Path Planning
+- Finite State Machines
+- Hardware–Software Integration
+- C++
 
 ---
 
-## Future Development
+## Academic Context
 
-Upcoming milestones include:
+**University:** Kadir Has University
 
-- Arduino implementation
-- Real ultrasonic sensor integration
-- Real motor control
-- Indoor autonomous exploration
-- Mapping optimization
-- STM32 migration
-- Sensor fusion
-- Path planning
+**Course:** EEE309 — Software–Hardware Integration
+
+**Project:** SENTRA — Sensor-Based Autonomous Exploration and Mapping
+
+---
+
+## Acknowledgments
+
+The initial simulation framework is derived from the ARES robotics project and is being adapted and extended to meet SENTRA's system requirements.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License.
-
----
-
-## Author
-
-Developed by **İclal Sevde Yavuz**
-
-Computer Engineering Student
-
-Kadir Has University
-=======
-# ARES
-
-> **Autonomous Rescue & Exploration System**
-
-### Building autonomous robots from software architecture to real-world exploration.
-
-⚠️ **Status:** Active Development (V1 Completed)
-
-ARES is a long-term robotics platform focused on building an autonomous robot capable of exploring unknown indoor environments without relying on GPS.
-
-Unlike projects that start directly with hardware, ARES begins with a software-first approach. The goal is to build a modular architecture where navigation, sensing, mapping, and motor control evolve independently before being integrated into a physical robot.
-
-Current version: **V1 Terminal Simulation**
-
----
-
-## Current Capabilities
-
-✔ Finite State Machine (FSM) navigation
-
-✔ Dynamic Occupancy Grid Mapping
-
-✔ Modular Object-Oriented C++ Architecture
-
-✔ Autonomous Sense → Decide → Act cycle
-
-✔ Hardware-independent software layer
-
----
-
-**Next milestone:** Arduino-based autonomous rover (V2)
->>>>>>> 8dc5228f724f34f28648ca1ed0d878428f926f6d
+See the [LICENSE](LICENSE) file for licensing information.
