@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include "StateMachine.h"
 using namespace std;
 enum State {
     IDLE,
